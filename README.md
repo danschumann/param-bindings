@@ -16,9 +16,13 @@ var wrap = require('param-bindings');
 // Now you can pass in object or arrays as the args to execute
 wrap(connection, 'execute');
 
-connection.execute('Select from :tableName where :column= :value, comma=:works_too', {tableName: 'users', column: 'name', value: 123, works_too: 456}, function(){
-  console.log('called back');
-});
+connection.execute(
+  'Select from :tableName where :column= :value, comma=:works_too',
+  {tableName: 'users', column: 'name', value: 123, works_too: 456},
+  function(){
+    console.log('called back');
+  }
+);
 // converts to 'Select from :1 where :2= :3, comma=:4', ['users', 'name', 123, 456], function(){...}
 ```
 
