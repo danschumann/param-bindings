@@ -16,7 +16,7 @@ var wrap = require('param-bindings');
 // Now you can pass in object or arrays as the args to execute
 wrap(connection, 'execute');
 
-connection.execute('Select from :tableName where :column = :value', {tableName: 'users', column: 'name', value: '123}, function(){
+connection.execute('Select from :tableName where :column = :value', {tableName: 'users', column: 'name', value: 123}, function(){
 console.log('called back');
 ```
 
