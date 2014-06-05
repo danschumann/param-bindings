@@ -1,6 +1,6 @@
 {
   "name": "param-bindings",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert object :sql :statements into array numbered ones",
   "main": "./index.js",
   "scripts": {},
