@@ -17,7 +17,9 @@ var wrap = require('param-bindings');
 wrap(connection, 'execute');
 
 connection.execute('Select from :tableName where :column = :value', {tableName: 'users', column: 'name', value: 123}, function(){
-console.log('called back');
+  console.log('called back');
+});
+// converts to 'Select from :1 where :2 = :3', ['users', 'name', 123], function(){...}
 ```
 
 Note: it will convert `:param=:value` just fine, but I don't know that sql programs will like `:1=:2` anyway.
