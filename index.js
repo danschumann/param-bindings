@@ -1,6 +1,6 @@
 var
   wrap,
-  findArgs  = /:[^\s,=]+/g,
+  findArgs  = /:[^\s,=()]+/g,
   debug     = require('debug')('param-bindings'),
   _         = require('underscore'),
   __slice   = [].slice;
@@ -82,13 +82,14 @@ if (process.env.TEST_PARAM_BINDINGS) {
   });
 
   wrap( fakeConnection, 'fakeExecute', {increment: true, startAt: 1})
+  wrap( fakeConnection, 'fakeExecute', {startAt: 1})
 
   debug('TEST increment');
 
   fakeConnection.fakeExecute(
     'select * from users ' + 
-      'join bacon on bacon.id = :ham, :column=:yummy ' + 
-      'where beep=:boop and bop=:blip',
+      'join bacon on bacon.id in (:ham), :column=:yummy ' + 
+      'where beep=:boop and bop = :blip',
     {ham: 'pork', yummy: 10, boop: 2, blip: 'bop', column: 'fun'},
     function(){
       console.log('called back');
