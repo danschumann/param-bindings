@@ -10,6 +10,11 @@ wrap = function(connection, executeName, options) {
   var execute;
   execute = connection[executeName];
 
+  // wrap only once
+  if (connection._paramBindings)
+    return execute;
+  connection._paramBindings = true;
+
   options = options || {};
   options.key = options.key || '?';
   if (options.increment && options.startAt == null)
