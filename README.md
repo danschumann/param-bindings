@@ -23,6 +23,10 @@ connection.execute(
     console.log('called back');
   }
 );
+// converts to 'Select from ? where ?= ?, comma=?', ['users', 'name', 123, 456], function(){...}
+
+// whereas having called
+wrap(connection, 'execute', {increment: true, startsAt: 1}); // would output
 // converts to 'Select from :1 where :2= :3, comma=:4', ['users', 'name', 123, 456], function(){...}
 ```
 
