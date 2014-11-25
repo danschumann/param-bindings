@@ -25,7 +25,8 @@ connection.execute(
 );
 // converts to 'Select from ? where ?= ?, comma=?', ['users', 'name', 123, 456], function(){...}
 
-// wrap(connection, 'execute', {increment: true, startsAt: 1}); // would output
+// whereas having called
+wrap(connection, 'execute', {increment: true, startsAt: 1}); // would output
 // converts to 'Select from :1 where :2= :3, comma=:4', ['users', 'name', 123, 456], function(){...}
 ```
 
