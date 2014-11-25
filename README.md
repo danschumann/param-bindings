@@ -11,11 +11,10 @@ $ npm install param-bindings
 ### Javascript
 
 ```javascript
-var wrap = require('param-bindings');
 
-// Now you can pass in object or arrays as the args to execute
-wrap(connection, 'execute');
+require('param-bindings')(connection, 'execute');
 
+// Now you can pass in objects to execute!  ( normal stuff will call the original execute method )
 connection.execute(
   'Select from :tableName where :column= :value, comma=:works_too',
   {tableName: 'users', column: 'name', value: 123, works_too: 456},
