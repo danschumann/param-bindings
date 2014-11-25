@@ -86,8 +86,14 @@ if (process.env.TEST_PARAM_BINDINGS) {
       console.log('called back');
   });
 
+  var fakeConnection = {
+    fakeExecute: function(sql, args, cb) {
+      debug('executing', arguments);
+      cb()
+    }
+  }
+
   wrap( fakeConnection, 'fakeExecute', {increment: true, startAt: 1})
-  wrap( fakeConnection, 'fakeExecute', {startAt: 1})
 
   debug('TEST increment');
 
