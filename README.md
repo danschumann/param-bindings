@@ -11,11 +11,12 @@ $ npm install param-bindings
 ### Javascript
 
 ```javascript
+var connection = require("some sql module that doesn't let you use objects as arguments")
 
-require('param-bindings')(connection, 'execute');
+require('param-bindings')(connection, 'query');
 
 // Now you can pass in objects to execute!  ( normal stuff will call the original execute method )
-connection.execute(
+connection.query(
   'Select from :tableName where :column= :value, comma=:works_too',
   {tableName: 'users', column: 'name', value: 123, works_too: 456},
   function(){
@@ -23,11 +24,11 @@ connection.execute(
   }
 );
 // converts to 
-// connection.execute('Select from ? where ?= ?, comma=?', ['users', 'name', 123, 456], function(){...})
+// connection.query('Select from ? where ?= ?, comma=?', ['users', 'name', 123, 456], function(){...})
 
 // whereas having called
-wrap(connection, 'execute', {increment: true, startsAt: 1}); // would output
-// connection.execute('Select from :1 where :2= :3, comma=:4', ['users', 'name', 123, 456], function(){...})
+wrap(connection, 'query', {increment: true, startsAt: 1}); // would output
+// connection.query('Select from :1 where :2= :3, comma=:4', ['users', 'name', 123, 456], function(){...})
 ```
 
 Note: it will convert `:param=:value` just fine, but I don't know that sql programs will like `:1=:2` anyway.
