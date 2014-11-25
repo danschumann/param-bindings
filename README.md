@@ -11,7 +11,7 @@ $ npm install param-bindings
 ### Javascript
 
 ```javascript
-var connection = require("some sql module that doesn't let you use objects as arguments")
+var connection = require("some-sql-module"); // some module that doesn't let you use objects as arguments
 
 require('param-bindings')(connection, 'query');
 
